@@ -10,7 +10,7 @@ unsigned long initTime, lastUpdatedTime, currentTime;
 
 int32_t tenRaisedTo[] = {1, 10, 100, 1000, 10000, 100000, 1000000}; // for use in printNumAlignRight
 
-void printNumAlignRight(int n, int numDigits, int xRight, int y) {  // Print a number on the LCD display aligning right with a certain number of digits, adding padding zeros to the left if necessary
+void printNumAlignRight(unsigned long n, int numDigits, int xRight, int y) {  // Print a number on the LCD display aligning right with a certain number of digits, adding padding zeros to the left if necessary
     for(int i = 0; i < numDigits; i++) {  // Loop through each digit
         lcd.setCursor(xRight-i,y);                    // Set cursor to position of digit
         lcd.write((n / tenRaisedTo[i]) % 10 + '0');   // Write the current digit (adding '0' converts the value from range 0 to 9 to range '0' to '9')
@@ -63,7 +63,7 @@ void loop() {
             printNumAlignRight(sensor.getTVOCPPB(), 5, 6, 0);
             printNumAlignRight(sensor.getCO2PPM(), 5, 15, 0);
         } else {
-            lcd.setCursor(3,0);
+            lcd.setCursor(2,0);
             lcd.print("error");
             lcd.setCursor(11,0);
             lcd.print("error");
